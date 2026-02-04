@@ -1,26 +1,41 @@
 <script setup>
-import BasketIcon from '../atoms/BasketIcon.vue';
-import Logo from '../atoms/Logo.vue';
+import Background from '../atoms/Background.vue';
+import ButtonBascket from '../atoms/ButtonBascket.vue';
 import PresentationText from '../atoms/PresentationText.vue';
-
 
 </script>
 
 <template>
-    <div class="presentation">
-        <BasketIcon :side="42"/>
-        <PresentationText
-            text="Cestas da Lua" 
-            :size="3.5"
-        />
-    </div>
+    <section>
+        <Background class="container">
+            <div class="content">
+                <PresentationText
+                    text="Cestas Personalizadas para Todas as Ocasiões"
+                    subtext="Cestas feitas à mão para momentos inesquecíveis. 
+                    Do café da manhã ao brinde especial, estamos aqui para 
+                    tornar o seu dia mais doce."
+                />
+                <ButtonBascket
+                    text="Ver Catálogo"
+                />
+            </div>
+            
+        </Background>
+    </section>
 </template>
 
-<style scoped>
-    .presentation {
+<style>
+    .container {
         display: flex;
         justify-content: center;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 40px;
+
+        padding: 40px;
+        width: 60%;
     }
 </style>
