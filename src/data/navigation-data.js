@@ -10,18 +10,13 @@ export const navigationData = [
         index: 2
     },
     {
-        text: "Bolos",
+        text: "Sobre",
         href: "",
         index: 3
     },
     {
-        text: "Sobre",
-        href: "",
-        index: 4
-    },
-    {
         text: "Contato",
         href: "",
-        index: 5
+        index: 4
     },
 ];
