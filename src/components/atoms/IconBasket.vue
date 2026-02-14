@@ -1,12 +1,8 @@
 <script setup>
-import { computed } from 'vue';
-
 
 const props = defineProps({
     side: Number
 })
-
-const sidePx = computed(() => props.side + "px")
 </script>
 
 <template>

@@ -1,8 +1,9 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import CardProduct from '../molecules/CardProduct.vue';
-import basketImage from '@/images/background-presentation.jpg';
+
 import SectionPresentation from '../atoms/SectionPresentation.vue';
+import CarouselButton from '../molecules/CarouselButton.vue';
 
 const props = defineProps({
 	title: String,
@@ -17,6 +18,7 @@ const props = defineProps({
 const translateX = ref(0);
 const currentSpeed = ref(props.speed);
 const isHovered = ref(false);
+const targetTranslate = ref(0);
 
 const SLOW_SPEED_MULTIPLIER = 0.1
 
@@ -33,7 +35,6 @@ const animate = () => {
 		
 	if (isHovered.value)
 		currentSpeed.value += carouselSpeedSlow()
-		//currentSpeed.value *= 0.95;
 	else
 		currentSpeed.value += carouselSpeedNormal()
 
@@ -47,6 +48,21 @@ const handleMouseEnter = () => {
 const handleMouseLeave = () => {
 	isHovered.value = false;
 };
+
+const buttonMove = 5
+const leftButtonClicked = () => {
+	translateX.value -= buttonMove
+
+	if (translateX.value < 0)
+		translateX.value = 50
+}
+
+const rightButtonClicked = () => {
+	translateX.value += buttonMove
+
+	if (translateX.value >= 50)
+		translateX.value = 0
+}
 
 onMounted(() => {
   	animate();
@@ -65,17 +81,27 @@ onUnmounted(() => {
 		/>
 		<div 
 			class="carousel-window"
-			@mouseenter="handleMouseEnter"
-			@mouseleave="handleMouseLeave"
 		>
+			<CarouselButton
+				@clicked="leftButtonClicked"
+				class="carousel-button btn-left" 
+				:side="80"
+			/>
+			<CarouselButton
+				@clicked="rightButtonClicked"
+				class="carousel-button btn-right" 
+				:side="80"
+			/>
 			<div 
 				class="carousel-track" 
 				:style="{ transform: `translateX(-${translateX}%)` }"
 			>
 				<CardProduct class="carousel-item"
+					@mouseenter="handleMouseEnter"
+					@mouseleave="handleMouseLeave"
 					v-for="(basket, index) in doubledBaskets"
 					:key="index"
-					:image="basketImage"
+					:image="basket.image"
 					:alternative="basket.alternative"
 					:title="basket.title"
 					:subtitle="basket.subtitle"
@@ -91,7 +117,8 @@ onUnmounted(() => {
 .carousel-window {
     width: 100%;
     overflow: hidden;
-    padding: 40px 0;
+    padding: 30px 0;
+	position: relative;
 }
 
 .carousel-track {
@@ -103,6 +130,34 @@ onUnmounted(() => {
     /*animation: scroll var(--duration) linear infinite;*/
 	will-change: transform;
 }
+
+.carousel-button {
+	z-index: 1;
+
+	position: absolute;
+	top: 50%;
+	transform-origin: center;
+	transition: transform 0.3s ease-in-out;
+}
+
+.btn-left {
+	left: 5%;
+	transform: translateY(-50%) rotate(180deg);
+
+	&:hover {
+		transform: translateY(-50%) rotate(180deg) scale(1.2);
+	}
+}
+.btn-right {
+	right: 5%;
+	transform: translateY(-50%);
+
+	&:hover {
+		transform: translateY(-50%) scale(1.2);
+	}
+}
+
+
 
 /* --- A ANIMAÇÃO --- */
 @keyframes scroll {

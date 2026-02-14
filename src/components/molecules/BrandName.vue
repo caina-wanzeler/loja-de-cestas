@@ -1,5 +1,5 @@
 <script setup>
-import BasketIcon from '../atoms/BasketIcon.vue';
+import IconBasket from '../atoms/IconBasket.vue';
 import HeaderText from '../atoms/HeaderText.vue';
 
 
@@ -7,7 +7,7 @@ import HeaderText from '../atoms/HeaderText.vue';
 
 <template>
     <div class="brand-name">
-        <BasketIcon :side="42"/>
+        <IconBasket :side="42"/>
         <HeaderText
             text="Cestas da Lua" 
             :size="3.5"
