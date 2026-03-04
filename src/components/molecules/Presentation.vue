@@ -3,6 +3,8 @@ import Background from '../atoms/Background.vue';
 import ButtonBascket from '../atoms/ButtonBascket.vue';
 import PresentationText from '../atoms/PresentationText.vue';
 
+const catalogueLink = "https://www.instagram.com/cesta.dalua?igsh=MTZ2YmIzODhidzl2Ng==";
+
 </script>
 
 <template>
@@ -17,6 +19,7 @@ import PresentationText from '../atoms/PresentationText.vue';
                 />
                 <ButtonBascket
                     text="Ver Catálogo"
+                    :link="catalogueLink"
                 />
             </div>
             

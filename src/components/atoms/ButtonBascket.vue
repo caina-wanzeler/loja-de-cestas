@@ -1,13 +1,20 @@
 <script setup>
 
 const props = defineProps({
-    text: String
+    text: String,
+    link: String
 })
 
 </script>
 
 <template>
-    <button class="button-bascket">{{ props.text }}</button>
+    <a 
+        :href="props.link"
+        target="_blank"
+    >
+        <button class="button-bascket">{{ props.text }}</button>
+    </a>
+    
 </template>
 
 <style scoped>
