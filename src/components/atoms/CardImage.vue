@@ -13,9 +13,9 @@ const props = defineProps({
 
 <style scoped>
     img {
-        width: 300px;
-        height: 200px;
+        width: 100%;
+        height: 280px;
 
-        border-radius: 20px;
+        border-radius: 20px 20px 0 0;
     }
 </style>
