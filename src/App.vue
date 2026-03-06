@@ -1,4 +1,6 @@
 <script setup>
+import ButtonCartChange from './components/atoms/ButtonCartChange.vue';
+import DisplayProduct from './components/atoms/DisplayProduct.vue';
 import IconArrow from './components/atoms/IconArrow.vue';
 import CardContact from './components/molecules/CardContact.vue';
 import CarouselButton from './components/molecules/CarouselButton.vue';
@@ -7,6 +9,9 @@ import HomeFooter from './components/organisms/HomeFooter.vue';
 import HomeHeader from './components/organisms/HomeHeader.vue';
 import HomeMain from './components/organisms/HomeMain.vue';
 import { baskets } from './data/baskets-data';
+
+
+
 </script>
 
 <template>
@@ -30,5 +35,8 @@ import { baskets } from './data/baskets-data';
     <CardContact />
 </template>
 
-<style scoped>
+<style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
 </style>
