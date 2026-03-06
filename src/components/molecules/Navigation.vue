@@ -1,25 +1,58 @@
 <script setup>
 
 import Link from '../atoms/Link.vue';
-import { navigationData } from '../../data/navigation-data';
+import IconBasketShop from '../atoms/IconBasketShop.vue';
+import ShoppingCart from './ShoppingCart.vue';
+import { ref } from 'vue';
+
+const activate = ref(false);
+
+const activateShoppingCart = () => {
+    activate.value = !activate.value;
+}
+
+const sizeLink = 1.3;
 
 </script>
 
 <template>
     <div class="navigation">
-        <Link v-for="item in navigationData"
-                :key="item.index"
-                :href="item.href"
-                :text="item.text"
-                :size="1.3"
+        <Link
+            text="Inicio"
+            :size="sizeLink"
+        />
+        <Link
+            text="Cestas"
+            :size="sizeLink"
+        />
+        <Link
+            text="Sobre"
+            :size="sizeLink"
+        />
+        <Link
+            text="Contato"
+            :size="sizeLink"
+        />
+        <IconBasketShop 
+            side="28"
+            v-on:on-clicked="activateShoppingCart"
+        />
+        <ShoppingCart 
+            class="shopping-cart"
+            :activate-cart="activate"
         />
     </div>
+    
 </template>
 
 <style scoped>
     .navigation {
         display: flex;
-        justify-content: center;
         gap: 20px;
+        position: relative;
+    }
+
+    .shopping-cart {
+        margin: none;
     }
 </style>
