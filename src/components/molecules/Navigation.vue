@@ -51,8 +51,4 @@ const sizeLink = 1.3;
         gap: 20px;
         position: relative;
     }
-
-    .shopping-cart {
-        margin: none;
-    }
 </style>

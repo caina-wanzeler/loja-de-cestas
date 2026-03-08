@@ -101,6 +101,7 @@ onUnmounted(() => {
 					@mouseleave="handleMouseLeave"
 					v-for="(basket, index) in doubledBaskets"
 					:key="index"
+					:id="index"
 					:image="basket.image"
 					:alternative="basket.alternative"
 					:title="basket.title"

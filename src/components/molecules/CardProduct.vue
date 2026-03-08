@@ -4,8 +4,10 @@ import ButtonCartChange from '../atoms/ButtonCartChange.vue';
 import CardImage from '../atoms/CardImage.vue';
 import CardText from '../atoms/CardText.vue';
 import DisplayProduct from '../atoms/DisplayProduct.vue';
+import { useCartStore } from '@/data/cart-data';
 
 const props = defineProps({
+    id: Number,
     image: String,
     alternative: String,
     title: String,
@@ -13,17 +15,20 @@ const props = defineProps({
     price: Number
 })
 
+const cart = useCartStore();
+
+cart.updateProduct(props.id, 0);
+
 const radiusButton = 12;
 
-const quantityDisplay = ref(0);
-
-const addQuantityDisplay = () => {
-    quantityDisplay.value++;
+const addQuantityProduct = () => {
+    cart.addProduct(props.id, 1);
+    console.log(cart.getQuantityProduct(props.id));
 }
 
-const remQuantityDisplay = () => {
-    if (quantityDisplay.value != 0)
-        quantityDisplay.value--;
+const remQuantityProduct = () => {
+    if (cart.getQuantityProduct(props.id) != 0)
+        cart.remProduct(props.id, 1);
 }
 
 </script>
@@ -43,13 +48,13 @@ const remQuantityDisplay = () => {
             <ButtonCartChange 
                 type="-" 
                 :radius="`${radiusButton}px 0 0 ${radiusButton}px`"
-                v-on:on-clicked="remQuantityDisplay"
+                v-on:on-clicked="remQuantityProduct"
             />
-            <DisplayProduct :quantity="`${quantityDisplay}`" />
+            <DisplayProduct :quantity="`${cart.getQuantityProduct(props.id)}`" />
             <ButtonCartChange 
                 type="+"
                 :radius="`0 ${radiusButton}px ${radiusButton}px 0`"
-                v-on:on-clicked="addQuantityDisplay"
+                v-on:on-clicked="addQuantityProduct"
             />
         </div>
     </div>

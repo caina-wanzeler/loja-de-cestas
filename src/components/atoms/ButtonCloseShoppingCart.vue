@@ -1,8 +1,11 @@
 <script setup>
 
 const props = defineProps({
-    side: Number
+    side: Number,
+    radius: Number
 })
+
+const radiusPx = props.radius + 'px';
 
 const emit = defineEmits(['onClicked']);
 
@@ -35,7 +38,7 @@ const closeShoppingCart = () => {
     button {
         background-color: rgb(224, 224, 224);
         border: none;
-        border-radius: 5px;
+        border-radius: v-bind(radiusPx);
 
         display: flex;
         align-items: center;

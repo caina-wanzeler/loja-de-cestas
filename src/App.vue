@@ -11,8 +11,6 @@ import HomeHeader from './components/organisms/HomeHeader.vue';
 import HomeMain from './components/organisms/HomeMain.vue';
 import { baskets } from './data/baskets-data';
 
-ShoppingCart
-
 </script>
 
 <template>

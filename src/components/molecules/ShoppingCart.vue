@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import ButtonCloseShoppingCart from '../atoms/ButtonCloseShoppingCart.vue';
+import TitleCart from '../atoms/TitleCart.vue';
 
 const props = defineProps({
     activateCart: {
@@ -8,6 +9,9 @@ const props = defineProps({
         default: false
     }
 })
+
+const radius = 10;
+const radiusPx = radius + 'px'
 
 const activate = ref(props.activateCart)
 
@@ -29,7 +33,15 @@ watch(() => props.activateCart, () => {
     <div class="shopping-cart-container"
         :style="`transform: translateX(${transformPercente})`"
     >
-        <ButtonCloseShoppingCart :side="42" v-on:on-clicked="altenateActivate" />
+        <div class="title-container">
+            <ButtonCloseShoppingCart 
+                :side="42" 
+                :radius="radius"
+                v-on:on-clicked="altenateActivate"
+            />
+            <TitleCart :radius="radius" />
+        </div>
+        
     </div>
 </template>
 
@@ -37,6 +49,10 @@ watch(() => props.activateCart, () => {
 
 <style scoped>
     .shopping-cart-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
         width: 450px;
 
         background-color: aliceblue;
@@ -47,8 +63,18 @@ watch(() => props.activateCart, () => {
         bottom: 0;
         right: 0;
 
+        border-radius: v-bind(radiusPx) 0 0 v-bind(radiusPx);
         padding: 15px 20px;
+        box-shadow: 1px 3px 6px 3px rgba(0, 0, 0, 0.1);
 
         transition: all 0.3s ease-in-out;
+
+        .title-container {
+            display: flex;
+            justify-content: none;
+            align-items: none;
+            
+            gap: 20px;
+        }
     }
 </style>
